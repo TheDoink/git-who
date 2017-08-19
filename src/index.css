@@ -1,5 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto|Sedgwick+Ave+Display');
+
+/* Color Palette */
+/*
+	black - header
+	silver - header color 1
+	#078800 - a lime green for logo
+	white - regular text color
+*/
+
+
+/* Header Info */
+.header {
+	background: black;
+	height:50px;
+	width:100%;
+}
+
+.header .logoTitle {
+	padding:10px;
+}
+
+.header .logoTitle .logoPart1 {
+	font-size:1.2em;
+	font-family: 'Roboto', sans-serif;
+	color: silver;
+}
+
+.header .logoTitle .logoPart2 {
+	font-size:1.2em;
+	font-family: 'Permanent Marker', cursive;
+	color: #078800;
+}
+
+/* Body Info */
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+
+  background: #272522;
+  color: white;
+}
+
+.content {
+	padding-left:15px;
+	padding-right:15px;
+}
+
+/* The person icon */
+.personIcon {
+	text-align: center;
+	color: #078800;
+	font-size: 30vw;
 }

@@ -1,0 +1,33 @@
+#nameInputForm {
+	width:100%;
+}
+
+#nameInputElement {
+	vertical-align: bottom;
+	margin:0;
+	padding: 0;
+}
+
+/* The actual input element */
+#nameInput {
+	width:90%;
+
+	border:none;
+	
+	height:10vw;
+	padding:0px;
+	font-size:8vw;
+}
+
+/* The button for submitting */
+#submitButton {
+
+	background:#078800;
+	display: inline-block;
+	font-size:8vw;
+	height:10vw;
+	width:10%;
+	text-align: center;
+	vertical-align: top;
+	cursor:pointer;
+}
