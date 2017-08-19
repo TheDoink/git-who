@@ -25,11 +25,13 @@ class App extends Component {
 
     // Define a box where the image will go 
     let ret = {
-      'width':'30vw',
-      'height':'30vw',
+      'width':'32vw',
+      'height':'32vw',
       'backgroundPosition':'center',
       'backgroundSize':'contain',
-      'display':'inline-block'
+      'backgroundRepeat': 'no-repeat',
+      'display':'inline-block',
+      'position':'relative',
       // '-moz-border-radius': '15vw',
       // '-webkit-border-radius': '15vw',
       // 'border-radius': '30vw'
@@ -50,7 +52,7 @@ class App extends Component {
   }
 
   render() {
-    let showUserIcon = this.state.gitUser.avatar_url ? "none": "visible";
+    let showUserIcon = this.state.gitUser.name ? "none": "visible";
     return (
       <div className="App">
         <div id="iconRow">
@@ -59,8 +61,10 @@ class App extends Component {
             <i className="fa fa-user"></i>
           </div>
         </div>
-        <h2>{this.state.gitUser.login}</h2>
+        
         <NameInput setUser={this.handleAddUser.bind(this)}>
+
+        <h2>{this.state.gitUser.login}</h2>
           
         </NameInput>
 

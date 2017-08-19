@@ -59,6 +59,17 @@ body {
 	width:100%;
 }
 
+#userIcon {
+	border-width: 2vw;
+	border-style: solid;
+	border-color: #078800;
+
+
+	border-radius:2vw;
+	-moz-border-radius:2vw;
+
+}
+
 /* The place where a github users icon goes */
 /* Adapted from: https://css-tricks.com/examples/ShapesOfCSS/ */
 

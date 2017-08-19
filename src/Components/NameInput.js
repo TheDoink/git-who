@@ -16,8 +16,6 @@ class NameInput extends Component {
   handleUpdate = (e) => {
     e.preventDefault();
 
-    console.log("CHANGING");
-
     let val = e.target.value;
 
     /* Github has a maxLength of usernames for 38 chars */
@@ -30,8 +28,8 @@ class NameInput extends Component {
 
   handleSubmit = (e) => {
 
+    // Prevent the usual behavior
     e.preventDefault();
-    console.log("SUBMITTIN");
 
     let name = this.state.name;
 
@@ -42,12 +40,16 @@ class NameInput extends Component {
     // If we pass the regex...
     if(githubUsernameRegex.test(name)) {
 
+      // this.props.setUser({});
+
       // Try and get that username...
       let gitPromise = $.get(`https://api.github.com/users/${name}`,
 
         // If we get a good response...
         (success) => {
           console.log(success);
+
+          // This sets the user and propogates it up
           this.props.setUser(success);
           this.setState({name: ""}, function() {});
         })

@@ -17,6 +17,9 @@
 	height:10vw;
 	padding:0px;
 	font-size:8vw;
+
+	border-radius:2vw 0vw 0vw 2vw;
+	-moz-border-radius:2vw 0vw 0vw 2vw;
 }
 
 /* The button for submitting */
@@ -30,4 +33,7 @@
 	text-align: center;
 	vertical-align: top;
 	cursor:pointer;
+
+	border-radius:0vw 2vw 2vw 0vw;
+	-moz-border-radius:0vw 2vw 2vw 0vw;
 }
