@@ -40,23 +40,23 @@ class NameInput extends Component {
     // If we pass the regex...
     if(githubUsernameRegex.test(name)) {
 
-      // this.props.setUser({});
 
       // Try and get that username...
       let gitPromise = $.get(`https://api.github.com/users/${name}`,
 
         // If we get a good response...
-        (success) => {
+        (success, text, obj) => {
+
           console.log(success);
 
           // This sets the user and propogates it up
-          this.props.setUser(success);
+          this.props.setUser({status: obj.status, data: success});
           this.setState({name: ""}, function() {});
         })
 
         // If we get anything else...
-        .fail((failure) => {
-          console.log("FAIL");
+        .fail((failure, text, error) => {
+          this.props.setUser({status: failure.status, data:{}});
         });
       
     }

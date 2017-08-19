@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import NameInput from './Components/NameInput'
+import NameInput from './Components/NameInput';
+import UserInfo from './Components/UserInfo';
 
 
 class App extends Component {
@@ -7,66 +8,53 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      gitUser: {}
+      gitUser: {},
+      searchMessage: "Search For A Git User Above"
     }
+  }
+
+  componentWillMount() {
+    this.setState({gitUser: {}});
   }
 
   // When one of our children sets the gitUser, set it here
-  handleAddUser = (user) => {
-    console.log("ADDING USER");
+  handleAddUser = (response) => {
 
-    console.log(user);
-    this.setState({gitUser: user}, function() {
+    console.log(response);
+    
+    // If everything was okay
+    if(response.status == 200) {
+      this.setState({gitUser: response.data, searchMessage: ""}, function() {});
 
-    });
-  }
-
-  getUserIconStyle = () => {
-
-    // Define a box where the image will go 
-    let ret = {
-      'width':'32vw',
-      'height':'32vw',
-      'backgroundPosition':'center',
-      'backgroundSize':'contain',
-      'backgroundRepeat': 'no-repeat',
-      'display':'inline-block',
-      'position':'relative',
-      // '-moz-border-radius': '15vw',
-      // '-webkit-border-radius': '15vw',
-      // 'border-radius': '30vw'
-    };
-
-    // If we have a user...
-    if(this.state.gitUser.avatar_url) {
+    } else if(response.status == 404) {
+      // If we can't find that user...
+      this.setState({gitUser: {}, searchMessage: "User Not Found!"}, function() {});
       
-      // Display that user's image
-      ret['backgroundImage'] = `url('${this.state.gitUser.avatar_url}')`;
     } else {
-
-      // Otherwise hide it
-      ret.display = "none";
+      // Othwerise, we have a big problem
+      this.setState({gitUser: {}, searchMessage: "Something Went Wrong, Try Again Later!"}, function() {});
     }
-
-    return ret;
   }
+
+
 
   render() {
-    let showUserIcon = this.state.gitUser.name ? "none": "visible";
+    let showUserIcon = this.state.gitUser.avatar_url ? "none": "visible";
+    this.state.showRealName = this.state.gitUser.name ? {display: 'visible'} : {display: 'none'};
     return (
       <div className="App">
-        <div id="iconRow">
-          <div id="userIcon" style={this.getUserIconStyle()}></div>
-          <div className="personIcon" style={{display: showUserIcon}}>
-            <i className="fa fa-user"></i>
-          </div>
+
+        <NameInput setUser={this.handleAddUser.bind(this)}>
+        </NameInput>
+
+        {/* User Info */}
+        <UserInfo gitUser={this.state.gitUser}>
+        </UserInfo>
+
+        <div id="searchMessage">
+          {this.state.searchMessage}
         </div>
         
-        <NameInput setUser={this.handleAddUser.bind(this)}>
-
-        <h2>{this.state.gitUser.login}</h2>
-          
-        </NameInput>
 
 
       </div>
