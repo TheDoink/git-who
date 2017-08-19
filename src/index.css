@@ -50,7 +50,16 @@ body {
 
 /* The person icon */
 .personIcon {
-	text-align: center;
 	color: #078800;
 	font-size: 30vw;
 }
+
+#iconRow {
+	text-align: center;
+	width:100%;
+}
+
+/* The place where a github users icon goes */
+/* Adapted from: https://css-tricks.com/examples/ShapesOfCSS/ */
+
+
