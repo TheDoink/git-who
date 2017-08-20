@@ -11,40 +11,38 @@ class RepoList extends Component {
     super(props);
 
     this.state = {
-      repoList: [],
-      pageNum: 1,
-      loading: false
-    }
+      repoList: [], // This list of commits for this repo
+      pageNum: 1,     // The page number we're on (30 items per page)
+      loading: false  // Whether or not we're in the process of getting more
+    };
   };
 
   getRepos(gitUser, pageNum) {
 
-    console.log(gitUser);
+    // Ensure we actually have a good user
+    if(gitUser.login) {
+      this.setState({loading: true}, function() {
+        // Try and get that username...
+        $.get(`https://api.github.com/users/${gitUser.login}/repos?visibility=public&sort=updated&direction=desc&page=${pageNum}`,
 
-    this.setState({loading: true}, function() {
-      // Try and get that username...
-      $.get(`https://api.github.com/users/${gitUser.login}/repos?visibility=public&sort=updated&direction=desc&page=${pageNum}`,
+          // If we get a good response...
+          (success, text, obj) => {
 
-        // If we get a good response...
-        (success, text, obj) => {
+            this.state.repoList = this.state.repoList.concat(success);
 
-          this.state.repoList = this.state.repoList.concat(success);
+            // Append the new repos to the old repos, and update the pageNum
+            this.setState({repoList: this.state.repoList, pageNum: pageNum, loading:false}, function() {
+              console.log(this.state);
+            });
 
-          // Append the new repos to the old repos, and update the pageNum
-          this.setState({repoList: this.state.repoList, pageNum: pageNum, loading:false}, function() {
-            console.log(this.state);
+          })
+
+          // If we get anything else...
+          .fail((failure, text, error) => {
+            
           });
-
-        })
-
-        // If we get anything else...
-        .fail((failure, text, error) => {
-          
-        });
-    });
-
-
-
+      });
+    }
   }
 
   /* Only get repos if we have a new username, and if it's good */

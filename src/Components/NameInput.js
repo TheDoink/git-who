@@ -20,17 +20,17 @@ class NameInput extends Component {
 
     /* Github has a maxLength of usernames for 38 chars */
     if(val.length <= 38) {
-      this.setState({name: val}, function() {
-        console.log(this.state);
-      });
+      this.setState({name: val}, function() {});
     }
   };
 
   handleSubmit = (e) => {
 
     // Prevent the usual behavior
-    e.preventDefault();
-
+    if(e) {
+      e.preventDefault();
+    }
+    
     let name = this.state.name;
 
     /* Github regex found from: https://github.com/shinnn/github-username-regex
@@ -46,7 +46,9 @@ class NameInput extends Component {
         // If we get a good response...
         (success, text, obj) => {
 
-          console.log(success);
+
+          // Set a cookie for later remembering
+          document.cookie = `gitUser=${name}`;
 
           // This sets the user and propogates it up
           this.props.setUser({status: obj.status, data: success});
@@ -60,6 +62,26 @@ class NameInput extends Component {
       
     }
   };
+
+  componentWillMount() {
+    // Find our user cookie
+    let cookieParts = document.cookie.split(";");
+    let tmp = cookieParts.find( (obj) => {
+      obj = obj.trim();
+      console.log(obj);
+      let listParts = obj.split("=");
+
+      return listParts[0] == "gitUser";
+    });
+
+    let tmpUser = "";
+    if(tmp) {
+      tmpUser = tmp.split("=")[1];
+
+      this.setState({name: tmpUser}, function() {this.handleSubmit();});
+    }
+
+  }
 
   render() {
     
