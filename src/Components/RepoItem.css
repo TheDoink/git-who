@@ -1,6 +1,6 @@
 .repoItem {
 	background:black;
-	overflow-x:scroll;
+	overflow-x:auto;
 
 	margin-top:10px;
 	padding: 10px;

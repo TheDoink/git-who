@@ -50,3 +50,39 @@ body {
 	padding-left:15px;
 	padding-right:15px;
 }
+
+#modeButtons {
+	width:100%;
+	
+	text-align:center;
+	height:50px;
+
+	margin-top:10px;
+}
+
+#modeButtons .modeButton {
+	background:black;
+	display:inline-block;
+	width:calc(50% - 10px);
+	height:100%;
+
+}
+
+#modeButtons #repoMode {
+
+	margin-right:10px;
+	
+}
+
+#modeButtons #gistMode {
+
+	margin-left:10px;
+}
+
+#modeButtons .selected {
+	background: #078800;
+}
+
+.buttonText {
+	margin-top:15px;
+}

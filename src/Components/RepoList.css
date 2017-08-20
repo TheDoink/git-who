@@ -1,22 +1,22 @@
-#repoList {
+.repoList {
 	overflow-y: auto;
 }
 
-#noItems {
+.noItems {
 	text-align: center;
 	margin:15px;
 }
 
-#getMore {
+.getMore {
 	text-align: center;
 	cursor: pointer;
 	color: #078800;
 }
 
-#getMore #getMoreIcon {
+.getMore .getMoreIcon {
 	font-size: 10em;
 }
 
-#getMore #getMoreText {
+.getMore .getMoreText {
 	font-size:3em;
 }

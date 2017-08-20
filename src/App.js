@@ -3,6 +3,7 @@ import NameInput from './Components/NameInput';
 import UserInfo from './Components/UserInfo';
 import RepoList from './Components/RepoList';
 import CommitList from './Components/CommitList';
+import './index.css';
 
 import $ from 'jquery';
 
@@ -14,6 +15,7 @@ class App extends Component {
       gitUser: {},
       mode: "user",
       repoName: "",
+      repoOrGist: "repo",
       searchMessage: "Search For A Git User Above"
     }
   }
@@ -45,7 +47,7 @@ class App extends Component {
     // If everything was okay
     if(response.status == 200) {
       this.setState({gitUser: response.data, searchMessage: ""}, function() {
-        
+        console.log(this.state);
       });
 
     } else if(response.status == 404) {
@@ -56,6 +58,8 @@ class App extends Component {
       // Othwerise, we have a big problem
       this.setState({gitUser: {}, searchMessage: "Something Went Wrong, Try Again Later!"}, function() {});
     }
+
+
   }
 
 
@@ -74,8 +78,22 @@ class App extends Component {
           <UserInfo gitUser={this.state.gitUser}>
           </UserInfo>
 
+          {/*The buttons that determine whether we are looking at repos or gists*/}
+          <div id="modeButtons">
+            <div id="repoMode" className={`modeButton ${this.state.repoOrGist === "repo" ? 'selected' : ''}`}>
+              <div className="buttonText">Repositories ({this.state.gitUser.public_repos})</div>
+            </div>
+            <div id="gistMode" className={`modeButton ${this.state.repoOrGist === "gist" ? 'selected' : ''}`}>
+              <div className="buttonText">Gists ({this.state.gitUser.public_gists})</div>
+            </div>
+          </div>
+
           {/* Repo Info */}
-          <RepoList gitUser={this.state.gitUser} className={typeof this.state.gitUser.login == undefined ? 'hidden' : ''}>
+          <RepoList gitUser={this.state.gitUser} shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "repo" ? 'false' : 'true'}>
+          </RepoList>
+
+          {/* Gist Info */}
+          <RepoList gitUser={this.state.gitUser} shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "gist" ? 'false' : 'true'}>
           </RepoList>
 
           <div id="searchMessage">
