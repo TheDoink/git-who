@@ -2,8 +2,9 @@
 	overflow-y: auto;
 }
 
-#noReposMessage {
+#noItems {
 	text-align: center;
+	margin:15px;
 }
 
 #getMore {

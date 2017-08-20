@@ -80,6 +80,12 @@ class CommitList extends Component {
           </CommitItem>
         ))}
 
+        {/*Display is we have no items in our list*/}
+        <div id="noItems" className={this.props.gitUser && !this.state.loading && this.state.commitList.length === 0 ? '' : 'hidden'}>
+          <div>No commits to this repo in the last month!</div>
+          <div><a href='/'>Back to {this.props.gitUser.login}</a></div>
+        </div>
+
         {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}
         <div id="getMore" onClick={() => this.getCommits(this.props.gitUser, this.props.repoName, this.state.pageNum+1)} className={this.props.gitUser && !this.state.loading && this.state.morePages ? '' : 'hidden'}>
           <i id="getMoreIcon"  className="fa fa-arrow-circle-o-down"></i>

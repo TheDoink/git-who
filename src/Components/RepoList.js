@@ -66,6 +66,11 @@ class RepoList extends Component {
           
         ))}
 
+        {/*Display is we have no items in our list*/}
+        <div id="noItems" className={this.props.gitUser && !this.state.loading && this.state.repoList.length === 0 ? '' : 'hidden'}>
+          This user has no repos yet!
+        </div>
+
         {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}
         <div id="getMore" onClick={() => this.getRepos(this.props.gitUser, this.state.pageNum+1)} className={this.props.gitUser && this.state.repoList.length < this.props.gitUser.public_repos && !this.state.loading ? '' : 'hidden'}>
           <i id="getMoreIcon"  className="fa fa-arrow-circle-o-down"></i>
