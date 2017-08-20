@@ -95,8 +95,4 @@ class NameInput extends Component {
   }
 }
 
-NameInput.propTypes = {
-  name: React.PropTypes.string
-}
-
 export default NameInput;

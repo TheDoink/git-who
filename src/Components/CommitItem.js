@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NameLink from './NameLink';
 import './RepoItem.css'; // There's some reuse of styles here
 import './CommitItem.css';
 
@@ -16,7 +17,7 @@ class RepoItem extends Component {
         <div className="repoItem">
           <span className="repoSuperScript">
             <span className="commitAuthor">
-              {this.props.commit.author.login}
+              <NameLink userName={this.props.commit.author.login}></NameLink>
             </span>
           </span>
           <div className="repoDescription">{this.props.commit.commit.message}</div>

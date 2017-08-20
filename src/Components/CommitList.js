@@ -75,7 +75,7 @@ class CommitList extends Component {
         </div>
 
         {/* Always Hide if there was a failure*/}
-        <div className={this.state.failure || this.state.loading ? 'hidden' : ''}>
+        <div className={this.state.failure}>
 
           {/* The list of commits */}
           {this.state.commitList.map(item => (

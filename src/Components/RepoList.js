@@ -67,7 +67,7 @@ class RepoList extends Component {
 
       <div>
         {/* Always Hide if there was a failure*/}
-        <div className={this.state.failure || this.state.loading ? 'hidden' : ''}>
+        <div className={this.state.failure}>
           <div className={`repoList ${this.props.shouldHide=="true" ? 'hidden': ''}`}>
             {this.state.repoList.map(item => (
               <RepoItem key={item.url} repo={item} repoOrGist={this.props.repoOrGist}>

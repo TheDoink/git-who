@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './GistItem.css';
 import GistFileItem from './GistFileItem';
+import NameLink from './NameLink';
 
 import $ from 'jquery';
 
@@ -88,7 +89,7 @@ class GistItem extends Component {
             {/* Gist title info */}
             <div id="gistTitle">
               <div>Gist: {this.state.gist.id}</div>
-              <div>By: {this.getOwner.bind(this)()}</div>
+              <div>By: <NameLink userName={this.getOwner.bind(this)()}></NameLink></div>
             </div>
 
             {/* Listing out the files */}

@@ -19,8 +19,6 @@ class App extends Component {
       repoOrGist: "repo", // what kind
       searchMessage: "Search For A Git User Above" // general placeholder message for error handling
     }
-
-
   }
 
   componentWillMount() {
