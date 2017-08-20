@@ -41,6 +41,11 @@ class App extends Component {
     }
   }
 
+  // Handling switching between gist and repo viewing
+  handleRepoOrGist = (repoOrGist) => {
+    this.setState({repoOrGist: repoOrGist});
+  };
+
   // When one of our children sets the gitUser, set it here
   handleSetUser = (response) => {
     
@@ -80,20 +85,20 @@ class App extends Component {
 
           {/*The buttons that determine whether we are looking at repos or gists*/}
           <div id="modeButtons">
-            <div id="repoMode" className={`modeButton ${this.state.repoOrGist === "repo" ? 'selected' : ''}`}>
+            <div id="repoMode" onClick={() => this.handleRepoOrGist("repo")} className={`modeButton ${this.state.repoOrGist === "repo" ? 'selected' : ''}`}>
               <div className="buttonText">Repositories ({this.state.gitUser.public_repos})</div>
             </div>
-            <div id="gistMode" className={`modeButton ${this.state.repoOrGist === "gist" ? 'selected' : ''}`}>
+            <div id="gistMode" onClick={() => this.handleRepoOrGist("gist")} className={`modeButton ${this.state.repoOrGist === "gist" ? 'selected' : ''}`}>
               <div className="buttonText">Gists ({this.state.gitUser.public_gists})</div>
             </div>
           </div>
 
           {/* Repo Info */}
-          <RepoList gitUser={this.state.gitUser} shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "repo" ? 'false' : 'true'}>
+          <RepoList gitUser={this.state.gitUser} repoOrGist="repo" shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "repo" ? 'false' : 'true'}>
           </RepoList>
 
           {/* Gist Info */}
-          <RepoList gitUser={this.state.gitUser} shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "gist" ? 'false' : 'true'}>
+          <RepoList gitUser={this.state.gitUser} repoOrGist="gist" shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "gist" ? 'false' : 'true'}>
           </RepoList>
 
           <div id="searchMessage">
