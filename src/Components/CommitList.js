@@ -13,7 +13,8 @@ class CommitList extends Component {
       commitList: [], // This list of commits for this repo
       pageNum: 1,     // The page number we're on (30 items per page)
       morePages: true,// If there are more pages to go (since we don't know the total number of commits)
-      loading: false  // Whether or not we're in the process of getting more
+      loading: false, // Whether or not we're in the process of getting more
+      failure: false  // whether or not we've had a catastrophic page failure
     }
   };
 
@@ -41,14 +42,14 @@ class CommitList extends Component {
             this.state.commitList = this.state.commitList.concat(success);
 
             // Append the new repos to the old repos, and update the pageNum
-            this.setState({commitList: this.state.commitList, pageNum: pageNum, loading:false, morePages: morePages}, function() {
+            this.setState({commitList: this.state.commitList, pageNum: pageNum, failure: false, loading:false, morePages: morePages}, function() {
             });
 
           })
 
           // If we get anything else...
           .fail((failure, text, error) => {
-            
+            this.setState({failure: true, loading: false});
           });
       });
     }
@@ -73,23 +74,34 @@ class CommitList extends Component {
           "{this.props.repoName}"
         </div>
 
-        {/* The list of commits */}
-        {this.state.commitList.map(item => (
-          <CommitItem key={item.sha} commit={item}>
-            
-          </CommitItem>
-        ))}
+        {/* Always Hide if there was a failure*/}
+        <div className={this.state.failure || this.state.loading ? 'hidden' : ''}>
 
-        {/*Display is we have no items in our list*/}
-        <div className={`noItems ${this.props.gitUser && !this.state.loading && this.state.commitList.length === 0 ? '' : 'hidden'}`}>
-          <div>No commits to this repo in the last month!</div>
-          <div><a href='/'>Back to {this.props.gitUser.login}</a></div>
+          {/* The list of commits */}
+          {this.state.commitList.map(item => (
+            <CommitItem key={item.sha} commit={item}>
+              
+            </CommitItem>
+          ))}
+
+          {/*Display is we have no items in our list*/}
+          <div className={`noItems ${this.props.gitUser && !this.state.loading && this.state.commitList.length === 0 ? '' : 'hidden'}`}>
+            <div>No commits to this repo in the last month!</div>
+            <div><a href='/'>Back to {this.props.gitUser.login}</a></div>
+          </div>
+
+          {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}
+          <div onClick={() => this.getCommits(this.props.gitUser, this.props.repoName, this.state.pageNum+1)} className={`getMore ${this.props.gitUser && !this.state.loading && this.state.morePages ? '' : 'hidden'}`}>
+            <i className="fa fa-arrow-circle-o-down getMoreIcon"></i>
+            <div className="getMoreText">Get More?</div>
+          </div>
         </div>
 
-        {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}
-        <div onClick={() => this.getCommits(this.props.gitUser, this.props.repoName, this.state.pageNum+1)} className={`getMore ${this.props.gitUser && !this.state.loading && this.state.morePages ? '' : 'hidden'}`}>
-          <i className="fa fa-arrow-circle-o-down getMoreIcon"></i>
-          <div className="getMoreText">Get More?</div>
+        {/*Error message if there's a problem */}
+        <div className={!this.state.failure ? 'hidden' : ''}>
+          <div className="failText">
+            A problem occured!
+          </div>
         </div>
       </div>
     );

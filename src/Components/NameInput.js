@@ -47,7 +47,6 @@ class NameInput extends Component {
         // If we get a good response...
         (success, text, obj) => {
 
-          console.log("GREAT SUCCESS");
 
           // Set a storage object for later remembering
           sessionStorage.setItem('gitUser', name);
@@ -60,9 +59,6 @@ class NameInput extends Component {
           }
 
           this.setState({name: "", hasSet: true}, function() {
-            console.log("SETTING NEW USER");
-
-            
           });
           
           

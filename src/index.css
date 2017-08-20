@@ -92,3 +92,8 @@ body {
 	text-align: center;
 	font-size: 2em;
 }
+
+#searchMessage {
+	text-align: center;
+	font-size: 5vw;
+}

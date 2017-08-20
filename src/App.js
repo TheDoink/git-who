@@ -19,6 +19,8 @@ class App extends Component {
       repoOrGist: "repo", // what kind
       searchMessage: "Search For A Git User Above" // general placeholder message for error handling
     }
+
+
   }
 
   componentWillMount() {
@@ -28,15 +30,12 @@ class App extends Component {
 
     // If we're just at a normal location...
     if(pathParts[1] == "") {
-      console.log("user mode");
       this.setState({gitUser: {}});
 
     } else if(pathParts[1] == "gist") {
-      console.log("gist mode");
       this.setState({mode: "gist", repoName: pathParts[2]}, function() {});
     } else {
       // if we have 'something else' (probably a repo)...
-      console.log("repo mode");
       this.setState({mode: "commit", repoName: pathParts[1]}, function() {});
     }
   }
@@ -63,8 +62,63 @@ class App extends Component {
       // Othwerise, we have a big problem
       this.setState({gitUser: {}, searchMessage: "Something Went Wrong, Try Again Later!"}, function() {});
     }
+  }
 
+  hideIfNoUser() {
+    return this.state.gitUser.login ? '' : 'hidden';
+  }
 
+  getModeToRender() {
+    if(this.state.mode == "user") {
+      return (
+        <div>
+          {/* User Info */}
+          <UserInfo gitUser={this.state.gitUser}>
+          </UserInfo>
+
+          {/*The buttons that determine whether we are looking at repos or gists*/}
+          <div id="modeButtons" className={this.hideIfNoUser.bind(this)()}>
+            <div id="repoMode" onClick={() => this.handleRepoOrGist("repo")} className={`modeButton ${this.state.repoOrGist === "repo" ? 'selected' : ''}`}>
+              <div className="buttonText">Repositories ({this.state.gitUser.public_repos})</div>
+            </div>
+            <div id="gistMode" onClick={() => this.handleRepoOrGist("gist")} className={`modeButton ${this.state.repoOrGist === "gist" ? 'selected' : ''}`}>
+              <div className="buttonText">Gists ({this.state.gitUser.public_gists})</div>
+            </div>
+          </div>
+
+          <div className={this.hideIfNoUser.bind(this)()}>
+
+            {/* Repo Info */}
+            <RepoList gitUser={this.state.gitUser} repoOrGist="repo" shouldHide={this.state.repoOrGist === "repo" ? 'false' : 'true'}>
+            </RepoList>
+
+            {/* Gist Info */}
+            <RepoList gitUser={this.state.gitUser} repoOrGist="gist" shouldHide={this.state.repoOrGist === "gist" ? 'false' : 'true'}>
+            </RepoList>
+          </div>
+
+          <div id="searchMessage">
+            {this.state.searchMessage}
+          </div>
+        </div>
+      )
+    } else if(this.state.mode == "commit") {
+      {/*The 'view commits' mode*/}
+      return (
+        <div>
+          <CommitList repoName={this.state.repoName} gitUser={this.state.gitUser}>
+          </CommitList>
+        </div>
+      )
+    } else if(this.state.mode == "gist") {
+      {/*The 'view gist' mode*/}
+      return (
+        <div>
+          <GistItem gistId={this.state.repoName}>
+          </GistItem>
+        </div>
+      )
+    }
   }
 
 
@@ -77,47 +131,8 @@ class App extends Component {
         <NameInput setUser={this.handleSetUser.bind(this)}>
         </NameInput>
 
-        {/*Only show this stuff when we're looking at "user" info*/}
-        <div className={this.state.mode == "user" ? '' : 'hidden'}>
-          {/* User Info */}
-          <UserInfo gitUser={this.state.gitUser}>
-          </UserInfo>
-
-          {/*The buttons that determine whether we are looking at repos or gists*/}
-          <div id="modeButtons">
-            <div id="repoMode" onClick={() => this.handleRepoOrGist("repo")} className={`modeButton ${this.state.repoOrGist === "repo" ? 'selected' : ''}`}>
-              <div className="buttonText">Repositories ({this.state.gitUser.public_repos})</div>
-            </div>
-            <div id="gistMode" onClick={() => this.handleRepoOrGist("gist")} className={`modeButton ${this.state.repoOrGist === "gist" ? 'selected' : ''}`}>
-              <div className="buttonText">Gists ({this.state.gitUser.public_gists})</div>
-            </div>
-          </div>
-
-          {/* Repo Info */}
-          <RepoList gitUser={this.state.gitUser} repoOrGist="repo" shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "repo" ? 'false' : 'true'}>
-          </RepoList>
-
-          {/* Gist Info */}
-          <RepoList gitUser={this.state.gitUser} repoOrGist="gist" shouldHide={typeof this.state.gitUser.login != undefined && this.state.repoOrGist === "gist" ? 'false' : 'true'}>
-          </RepoList>
-
-          <div id="searchMessage">
-            {this.state.searchMessage}
-          </div>
-        </div>
         
-        {/*The 'view commits' mode*/}
-        <div className={this.state.mode == "commit" ? '' : 'hidden'}>
-          <CommitList repoName={this.state.repoName} gitUser={this.state.gitUser}>
-          </CommitList>
-        </div>
-
-        {/*The 'view gist' mode*/}
-        <div className={this.state.mode == "gist" ? '' : 'hidden'}>
-          <GistItem gistId={this.state.repoName}>
-          </GistItem>
-        </div>
-
+        {this.getModeToRender.bind(this)()}
       </div>
     );
   }

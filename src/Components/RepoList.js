@@ -14,7 +14,8 @@ class RepoList extends Component {
       repoList: [], // This list of commits for this repo
       pageNum: 1,     // The page number we're on (30 items per page)
       loading: false,  // Whether or not we're in the process of getting more
-      morePages: true // whether or not we are going to get more pages
+      morePages: true, // whether or not we are going to get more pages
+      failure: false  // whether or not we've had a catastrophic page failure
     };
   };
 
@@ -37,15 +38,14 @@ class RepoList extends Component {
             this.state.repoList = this.state.repoList.concat(success);
 
             // Append the new repos to the old repos, and update the pageNum
-            this.setState({repoList: this.state.repoList, pageNum: pageNum, loading:false, morePages: morePages}, function() {
-              console.log(this.state);
+            this.setState({repoList: this.state.repoList, pageNum: pageNum, failure: false, loading:false, morePages: morePages}, function() {
             });
 
           })
 
           // If we get anything else...
           .fail((failure, text, error) => {
-            
+            this.setState({failure: true, loading: false});
           });
       });
     }
@@ -64,23 +64,36 @@ class RepoList extends Component {
 
   render() {
     return (
-      <div className={`repoList ${this.props.shouldHide=="true" ? 'hidden': ''}`}>
-        {this.state.repoList.map(item => (
-          <RepoItem key={item.url} repo={item} repoOrGist={this.props.repoOrGist}>
-            
-          </RepoItem>
-          
-        ))}
 
-        {/*Display is we have no items in our list*/}
-        <div className={`noItems ${this.props.gitUser && !this.state.loading && this.state.repoList.length === 0 ? '' : 'hidden'}`}>
-          This user has no {this.props.repoOrGist}s yet!
+      <div>
+        {/* Always Hide if there was a failure*/}
+        <div className={this.state.failure || this.state.loading ? 'hidden' : ''}>
+          <div className={`repoList ${this.props.shouldHide=="true" ? 'hidden': ''}`}>
+            {this.state.repoList.map(item => (
+              <RepoItem key={item.url} repo={item} repoOrGist={this.props.repoOrGist}>
+                
+              </RepoItem>
+              
+            ))}
+
+            {/*Display is we have no items in our list*/}
+            <div className={`noItems ${this.props.gitUser && !this.state.loading && this.state.repoList.length === 0 ? '' : 'hidden'}`}>
+              This user has no {this.props.repoOrGist}s yet!
+            </div>
+
+            {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}
+            <div onClick={() => this.getRepos(this.props.gitUser, this.state.pageNum+1, this.props.repoOrGist)} className={`getMore ${this.props.gitUser && this.state.morePages && !this.state.loading ? '' : 'hidden'}`}>
+              <i className="fa fa-arrow-circle-o-down getMoreIcon"></i>
+              <div className="getMoreText">Get More?</div>
+            </div>
+          </div>
         </div>
 
-        {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}
-        <div onClick={() => this.getRepos(this.props.gitUser, this.state.pageNum+1, this.props.repoOrGist)} className={`getMore ${this.props.gitUser && this.state.morePages && !this.state.loading ? '' : 'hidden'}`}>
-          <i className="fa fa-arrow-circle-o-down getMoreIcon"></i>
-          <div className="getMoreText">Get More?</div>
+        {/*Error message if there's a problem */}
+        <div className={!this.state.failure ? 'hidden' : ''}>
+          <div className="failText">
+            A problem occured!
+          </div>
         </div>
       </div>
     );
