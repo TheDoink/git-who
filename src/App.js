@@ -54,7 +54,7 @@ class App extends Component {
         </UserInfo>
 
         {/* Repo Info */}
-        <RepoList userName={this.state.gitUser.login}>
+        <RepoList gitUser={this.state.gitUser}>
         </RepoList>
 
         <div id="searchMessage">

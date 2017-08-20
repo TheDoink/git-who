@@ -12,45 +12,50 @@ class RepoList extends Component {
 
     this.state = {
       repoList: [],
-      pageNum: 0,
+      pageNum: 1,
+      loading: false
     }
   };
 
-  getRepos(userName, pageNum) {
+  getRepos(gitUser, pageNum) {
 
-    // Try and get that username...
-    $.get(`https://api.github.com/users/${userName}/repos?visibility=public&sort=updated&direction=desc`,
+    console.log(gitUser);
 
-      // If we get a good response...
-      (success, text, obj) => {
+    this.setState({loading: true}, function() {
+      // Try and get that username...
+      $.get(`https://api.github.com/users/${gitUser.login}/repos?visibility=public&sort=updated&direction=desc&page=${pageNum}`,
 
-        let tmpRepos = this.state.repoList;
-        tmpRepos.concat(success);
+        // If we get a good response...
+        (success, text, obj) => {
 
-        console.log(success);
+          this.state.repoList = this.state.repoList.concat(success);
 
-        // Append the new repos to the old repos, and update the pageNum
-        this.setState({repoList: success, pageNum: tmpRepos.length%30}, function() {
-          console.log(this.state);
+          // Append the new repos to the old repos, and update the pageNum
+          this.setState({repoList: this.state.repoList, pageNum: pageNum, loading:false}, function() {
+            console.log(this.state);
+          });
+
+        })
+
+        // If we get anything else...
+        .fail((failure, text, error) => {
+          
         });
+    });
 
-      })
 
-      // If we get anything else...
-      .fail((failure, text, error) => {
-        
-      });
+
   }
 
   /* Only get repos if we have a new username, and if it's good */
   componentWillReceiveProps(nextProps) {
-    if(nextProps.userName) {
+    if(nextProps.gitUser) {
 
-      this.getRepos(nextProps.userName, 0);
+      this.getRepos(nextProps.gitUser, 1);
     }
 
     // Even if no good username, reset the list
-    this.setState({repoList: [], pageNum: 0}, function() {});
+    this.setState({repoList: [], pageNum: 1}, function() {});
   };
 
   render() {
@@ -62,9 +67,19 @@ class RepoList extends Component {
           </RepoItem>
           
         ))}
+
+        {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}
+        <div id="getMore" onClick={() => this.getRepos(this.props.gitUser, this.state.pageNum+1)} className={this.props.gitUser && this.state.repoList.length < this.props.gitUser.public_repos && !this.state.loading ? '' : 'hidden'}>
+          <i id="getMoreIcon"  className="fa fa-arrow-circle-o-down"></i>
+          <div id="getMoreText">Get More?</div>
+        </div>
       </div>
     );
   }
+}
+
+RepoList.propTypes = {
+  gitUser: React.PropTypes.object
 }
 
 export default RepoList;

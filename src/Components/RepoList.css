@@ -1,3 +1,20 @@
 #repoList {
 	overflow-y: auto;
 }
+
+#noReposMessage {
+	text-align: center;
+}
+
+#getMore {
+	text-align: center;
+	color: #078800;
+}
+
+#getMore #getMoreIcon {
+	font-size: 10em;
+}
+
+#getMore #getMoreText {
+	font-size:3em;
+}
