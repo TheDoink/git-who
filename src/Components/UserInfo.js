@@ -3,10 +3,6 @@ import './UserInfo.css';
 
 class UserInfo extends Component {
 
-  constructor(props) {
-    super(props);
-  };
-
   getUserIconStyle = () => {
 
     // Define a box where the image will go 

@@ -40,9 +40,8 @@ class NameInput extends Component {
     // If we pass the regex...
     if(githubUsernameRegex.test(name)) {
 
-
       // Try and get that username...
-      let gitPromise = $.get(`https://api.github.com/users/${name}`,
+      $.get(`https://api.github.com/users/${name}`,
 
         // If we get a good response...
         (success, text, obj) => {
