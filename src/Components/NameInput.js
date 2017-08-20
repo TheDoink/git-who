@@ -8,7 +8,8 @@ class NameInput extends Component {
     super(props);
 
     this.state = {
-      name: ""
+      name: "",
+      hasSet: false
     }
   }
 
@@ -46,13 +47,25 @@ class NameInput extends Component {
         // If we get a good response...
         (success, text, obj) => {
 
+          console.log("GREAT SUCCESS");
 
-          // Set a cookie for later remembering
-          document.cookie = `gitUser=${name}`;
+          // Set a storage object for later remembering
+          sessionStorage.setItem('gitUser', name);
 
           // This sets the user and propogates it up
           this.props.setUser({status: obj.status, data: success});
-          this.setState({name: ""}, function() {});
+
+          if(this.state.hasSet && window.location.pathName != "") {
+            window.location = "/";  
+          }
+
+          this.setState({name: "", hasSet: true}, function() {
+            console.log("SETTING NEW USER");
+
+            
+          });
+          
+          
         })
 
         // If we get anything else...
@@ -64,20 +77,8 @@ class NameInput extends Component {
   };
 
   componentWillMount() {
-    // Find our user cookie
-    let cookieParts = document.cookie.split(";");
-    let tmp = cookieParts.find( (obj) => {
-      obj = obj.trim();
-      console.log(obj);
-      let listParts = obj.split("=");
-
-      return listParts[0] == "gitUser";
-    });
-
-    let tmpUser = "";
-    if(tmp) {
-      tmpUser = tmp.split("=")[1];
-
+    let tmpUser = sessionStorage.getItem('gitUser');
+    if(tmpUser) {
       this.setState({name: tmpUser}, function() {this.handleSubmit();});
     }
 

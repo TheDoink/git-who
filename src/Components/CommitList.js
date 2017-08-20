@@ -34,7 +34,7 @@ class CommitList extends Component {
           (success, text, obj) => {
 
             let morePages = true;
-            if(success.length == 0) {
+            if(success.length < 30) {
               morePages = false;
             }
 

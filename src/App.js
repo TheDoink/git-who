@@ -3,9 +3,6 @@ import NameInput from './Components/NameInput';
 import UserInfo from './Components/UserInfo';
 import RepoList from './Components/RepoList';
 import CommitList from './Components/CommitList';
-// import CommitItem from './Components/CommitItem';
-
-
 
 import $ from 'jquery';
 
@@ -28,17 +25,17 @@ class App extends Component {
 
     // If we're just at a normal location...
     if(pathParts[1] == "") {
-      // continue as normal
+      console.log("user mode");
       this.setState({gitUser: {}});
 
     } else if(pathParts[1] == "gist") {
-
+      console.log("repo mode");
       // if we have a gist, start that process
       // TODO: Add gist stuff
     } else {
       // if we have 'something else' (probably a repo)...
-
-        this.setState({mode: "commit", repoName: pathParts[1]}, function() {});
+      console.log("repo mode");
+      this.setState({mode: "commit", repoName: pathParts[1]}, function() {});
     }
   }
 
@@ -48,9 +45,6 @@ class App extends Component {
     // If everything was okay
     if(response.status == 200) {
       this.setState({gitUser: response.data, searchMessage: ""}, function() {
-        if(window.location.pathname != "/") {
-          // window.location="/";
-        }
         
       });
 
