@@ -74,7 +74,7 @@ class RepoList extends Component {
 
         {/*Display is we have no items in our list*/}
         <div className={`noItems ${this.props.gitUser && !this.state.loading && this.state.repoList.length === 0 ? '' : 'hidden'}`}>
-          This user has no repos yet!
+          This user has no {this.props.repoOrGist}s yet!
         </div>
 
         {/* A button that is used to get additional repos, only shown when there is a valid user, and when not loading */}

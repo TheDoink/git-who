@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto|Sedgwick+Ave+Display');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Source+Code+Pro|Roboto|Sedgwick+Ave+Display');
 
 /* Color Palette */
 /*
 	black - header
 	silver - header color 1
+	#272522 - the "off-black" kinda slate gray
 	#078800 - a lime green for logo
 	white - regular text color
 */
@@ -65,7 +66,7 @@ body {
 	display:inline-block;
 	width:calc(50% - 10px);
 	height:100%;
-
+	cursor: pointer;
 }
 
 #modeButtons #repoMode {
@@ -85,4 +86,9 @@ body {
 
 .buttonText {
 	margin-top:15px;
+}
+
+.failText {
+	text-align: center;
+	font-size: 2em;
 }

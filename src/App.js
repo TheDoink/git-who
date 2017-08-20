@@ -3,6 +3,7 @@ import NameInput from './Components/NameInput';
 import UserInfo from './Components/UserInfo';
 import RepoList from './Components/RepoList';
 import CommitList from './Components/CommitList';
+import GistItem from './Components/GistItem';
 import './index.css';
 
 import $ from 'jquery';
@@ -12,11 +13,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      gitUser: {},
-      mode: "user",
-      repoName: "",
-      repoOrGist: "repo",
-      searchMessage: "Search For A Git User Above"
+      gitUser: {}, // the FULL git user object
+      mode: "user", // which kind of view we should be on, relates to path. Valid options are "user", "commit", "gist"
+      repoName: "", // placeholder for the name of the repo we're going to examine
+      repoOrGist: "repo", // what kind
+      searchMessage: "Search For A Git User Above" // general placeholder message for error handling
     }
   }
 
@@ -31,9 +32,8 @@ class App extends Component {
       this.setState({gitUser: {}});
 
     } else if(pathParts[1] == "gist") {
-      console.log("repo mode");
-      // if we have a gist, start that process
-      // TODO: Add gist stuff
+      console.log("gist mode");
+      this.setState({mode: "gist", repoName: pathParts[2]}, function() {});
     } else {
       // if we have 'something else' (probably a repo)...
       console.log("repo mode");
@@ -52,7 +52,7 @@ class App extends Component {
     // If everything was okay
     if(response.status == 200) {
       this.setState({gitUser: response.data, searchMessage: ""}, function() {
-        console.log(this.state);
+
       });
 
     } else if(response.status == 404) {
@@ -106,10 +106,16 @@ class App extends Component {
           </div>
         </div>
         
-        {/*Only show this stuff when we're looking at "commit" info*/}
+        {/*The 'view commits' mode*/}
         <div className={this.state.mode == "commit" ? '' : 'hidden'}>
           <CommitList repoName={this.state.repoName} gitUser={this.state.gitUser}>
           </CommitList>
+        </div>
+
+        {/*The 'view gist' mode*/}
+        <div className={this.state.mode == "gist" ? '' : 'hidden'}>
+          <GistItem gistId={this.state.repoName}>
+          </GistItem>
         </div>
 
       </div>

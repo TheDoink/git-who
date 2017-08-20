@@ -1,0 +1,35 @@
+.fileItem {
+	
+	margin-top:10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	background:silver;
+}
+
+.fileNameHeader {
+	background:black;
+}
+
+.fileContent {
+	margin:5px;
+	overflow-x: auto;
+	font-family: 'Source Code Pro', monospace;
+	font-size:.75em;
+	
+	color:black;
+}
+
+.rowNum {
+	padding-right:5px;
+}
+
+.contentRow {
+	width:100%;
+	white-space: pre;
+}
+
+.rowContent {
+	padding-left:35px;
+	
+}
