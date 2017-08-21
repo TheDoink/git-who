@@ -14,9 +14,9 @@ exports[`lines up with the snapshot 1`] = `
           "backgroundRepeat": "no-repeat",
           "backgroundSize": "contain",
           "display": "inline-block",
-          "height": "32vw",
+          "height": "22vw",
           "position": "relative",
-          "width": "32vw",
+          "width": "22vw",
         }
       }
     />

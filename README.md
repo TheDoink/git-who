@@ -2,7 +2,7 @@
 A test project used to view the attributes of specific git users.
 
 
-To install and get all the necessary dependencies (npm must be installed)
+To install and get all the necessary dependencies (this may take 2 minutes or so)
 ```sh
 $ npm install
 ```
