@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './GistFileItem.css';
 
-import $ from 'jquery';
-
 class GistFileItem extends Component {
-
-  constructor(props) {
-    super(props);
-  };
 
   padNum(num) {
     let ret = num;

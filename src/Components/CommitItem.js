@@ -3,13 +3,7 @@ import NameLink from './NameLink';
 import './RepoItem.css'; // There's some reuse of styles here
 import './CommitItem.css';
 
-import $ from 'jquery';
-
 class RepoItem extends Component {
-
-  constructor(props) {
-    super(props);
-  };
 
   // Quick function to error check and see who owns the item
   getAuthor() {

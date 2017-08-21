@@ -27,10 +27,10 @@ class App extends Component {
     
 
     // If we're just at a normal location...
-    if(pathParts[1] == "") {
+    if(pathParts[1] === "") {
       this.setState({gitUser: {}});
 
-    } else if(pathParts[1] == "gist") {
+    } else if(pathParts[1] === "gist") {
       this.setState({mode: "gist", repoName: pathParts[2]}, function() {});
     } else {
       // if we have 'something else' (probably a repo)...
@@ -47,12 +47,12 @@ class App extends Component {
   handleSetUser = (response) => {
     
     // If everything was okay
-    if(response.status == 200) {
+    if(response.status === 200) {
       this.setState({gitUser: response.data, searchMessage: ""}, function() {
 
       });
 
-    } else if(response.status == 404) {
+    } else if(response.status === 404) {
       // If we can't find that user...
       this.setState({gitUser: {}, searchMessage: "User Not Found!"}, function() {});
       
@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   getModeToRender() {
-    if(this.state.mode == "user") {
+    if(this.state.mode === "user") {
       return (
         <div>
           {/* User Info */}
@@ -100,7 +100,7 @@ class App extends Component {
           </div>
         </div>
       )
-    } else if(this.state.mode == "commit") {
+    } else if(this.state.mode === "commit") {
       {/*The 'view commits' mode*/}
       return (
         <div>
@@ -108,7 +108,7 @@ class App extends Component {
           </CommitList>
         </div>
       )
-    } else if(this.state.mode == "gist") {
+    } else if(this.state.mode === "gist") {
       {/*The 'view gist' mode*/}
       return (
         <div>

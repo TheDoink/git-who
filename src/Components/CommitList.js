@@ -40,10 +40,11 @@ class CommitList extends Component {
               morePages = false;
             }
 
-            this.state.commitList = this.state.commitList.concat(success);
+            let tmpList = this.state.commitList;
+            tmpList = tmpList.concat(success);
 
             // Append the new repos to the old repos, and update the pageNum
-            this.setState({commitList: this.state.commitList, pageNum: pageNum, failure: false, loading:false, morePages: morePages}, function() {
+            this.setState({commitList: tmpList, pageNum: pageNum, failure: false, loading:false, morePages: morePages}, function() {
             });
 
           })

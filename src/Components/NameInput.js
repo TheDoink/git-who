@@ -54,7 +54,7 @@ class NameInput extends Component {
           // This sets the user and propogates it up
           this.props.setUser({status: obj.status, data: success});
 
-          if(this.state.hasSet && window.location.pathName != "") {
+          if(this.state.hasSet && window.location.pathName !== "") {
             window.location = "/";  
           }
 

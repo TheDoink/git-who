@@ -35,10 +35,12 @@ class RepoList extends Component {
               morePages = false;
             }
 
-            this.state.repoList = this.state.repoList.concat(success);
+            let tmpList = this.state.repoList;
+
+            tmpList = tmpList.concat(success);
 
             // Append the new repos to the old repos, and update the pageNum
-            this.setState({repoList: this.state.repoList, pageNum: pageNum, failure: false, loading:false, morePages: morePages}, function() {
+            this.setState({repoList: tmpList, pageNum: pageNum, failure: false, loading:false, morePages: morePages}, function() {
             });
 
           })
@@ -68,7 +70,7 @@ class RepoList extends Component {
       <div>
         {/* Always Hide if there was a failure*/}
         <div className={this.state.failure}>
-          <div className={`repoList ${this.props.shouldHide=="true" ? 'hidden': ''}`}>
+          <div className={`repoList ${this.props.shouldHide==="true" ? 'hidden': ''}`}>
             {this.state.repoList.map(item => (
               <RepoItem key={item.url} repo={item} repoOrGist={this.props.repoOrGist}>
                 
@@ -98,10 +100,6 @@ class RepoList extends Component {
       </div>
     );
   }
-}
-
-RepoList.propTypes = {
-  gitUser: React.PropTypes.object
 }
 
 export default RepoList;
