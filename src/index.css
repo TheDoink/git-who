@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Source+Code+Pro|Roboto|Sedgwick+Ave+Display');
-
 /* Color Palette */
 /*
 	black - header
@@ -8,6 +6,11 @@
 	#078800 - a lime green for logo
 	white - regular text color
 */
+@font-face {
+ font-family: "Permanent Marker";
+ src: url("./fonts/Permanent_Marker/PermanentMarker-Regular.ttf");
+}
+
 
 .hidden {
 	display: none;
