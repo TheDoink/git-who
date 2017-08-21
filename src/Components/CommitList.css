@@ -1,5 +1,7 @@
 .repoTitle {
-	font-size:8vw;
+	font-size:3vw;
 	text-align: center;
 	margin:15px;
+	width:100%;
+	display:inline-flex;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CommitItem from './CommitItem';
+import NameLink from './NameLink';
 import './CommitList.css';
 
 import $ from 'jquery';
@@ -55,6 +56,16 @@ class CommitList extends Component {
     }
   }
 
+  // Quick function to error check and see who owns the gist
+  getUser() {
+    let ret = "";
+    if(this.props.gitUser.login) {
+      ret = this.props.gitUser.login;
+    }
+    
+    return ret;
+  }
+
   /* Only get commits if we have a new username and a repo name*/
   componentWillReceiveProps(nextProps) {
     if(nextProps.gitUser && nextProps.repoName) {
@@ -71,7 +82,9 @@ class CommitList extends Component {
       <div>
         {/* The repo title */}
         <div className="repoTitle">
-          "{this.props.repoName}"
+          <NameLink userName={this.getUser.bind(this)()}></NameLink>
+          /
+          {this.props.repoName}
         </div>
 
         {/* Always Hide if there was a failure*/}

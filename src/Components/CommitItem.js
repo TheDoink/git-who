@@ -15,11 +15,11 @@ class RepoItem extends Component {
     
     return (
         <div className="repoItem">
-          <span className="repoSuperScript">
-            <span className="commitAuthor">
+          <div className="repoSuperScript">
+            <div className="commitAuthor">
               <NameLink userName={this.props.commit.author.login}></NameLink>
-            </span>
-          </span>
+            </div>
+          </div>
           <div className="repoDescription">{this.props.commit.commit.message}</div>
           <span className="repoSubScript">
             <span className="commitSha">{this.props.commit.sha}</span>
