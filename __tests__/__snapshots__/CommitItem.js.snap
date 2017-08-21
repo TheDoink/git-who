@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<div
+  className="repoItem"
+>
+  <div
+    className="repoSuperScript"
+  >
+    <div
+      className="commitAuthor"
+    >
+      <span>
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+          aslushnikov
+        </a>
+      </span>
+    </div>
+  </div>
+  <div
+    className="repoDescription"
+  >
+    Add proxy server example (#427)
+  </div>
+  <span
+    className="repoSubScript"
+  >
+    <span
+      className="commitSha"
+    >
+      a5eca57f4a29e99d17e296ee6afe5ff4c64ff931
+    </span>
+  </span>
+</div>
+`;

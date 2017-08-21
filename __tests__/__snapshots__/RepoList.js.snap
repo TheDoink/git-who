@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<div>
+  <div
+    className={false}
+  >
+    <div
+      className="repoList "
+    >
+      <div
+        className="noItems "
+      >
+        This user has no 
+        repo
+        s yet!
+      </div>
+      <div
+        className="getMore "
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-arrow-circle-o-down getMoreIcon"
+        />
+        <div
+          className="getMoreText"
+        >
+          Get More?
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="hidden"
+  >
+    <div
+      className="failText"
+    >
+      A problem occured!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`lines up with the snapshot 2`] = `
+<div>
+  <div
+    className={false}
+  >
+    <div
+      className="repoList "
+    >
+      <div
+        className="noItems "
+      >
+        This user has no 
+        gist
+        s yet!
+      </div>
+      <div
+        className="getMore "
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-arrow-circle-o-down getMoreIcon"
+        />
+        <div
+          className="getMoreText"
+        >
+          Get More?
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="hidden"
+  >
+    <div
+      className="failText"
+    >
+      A problem occured!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`lines up with the snapshot 3`] = `
+<div>
+  <div
+    className={false}
+  >
+    <div
+      className="repoList hidden"
+    >
+      <div
+        className="noItems "
+      >
+        This user has no 
+        repo
+        s yet!
+      </div>
+      <div
+        className="getMore "
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-arrow-circle-o-down getMoreIcon"
+        />
+        <div
+          className="getMoreText"
+        >
+          Get More?
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="hidden"
+  >
+    <div
+      className="failText"
+    >
+      A problem occured!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`lines up with the snapshot 4`] = `
+<div>
+  <div
+    className={false}
+  >
+    <div
+      className="repoList hidden"
+    >
+      <div
+        className="noItems "
+      >
+        This user has no 
+        gist
+        s yet!
+      </div>
+      <div
+        className="getMore "
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-arrow-circle-o-down getMoreIcon"
+        />
+        <div
+          className="getMoreText"
+        >
+          Get More?
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="hidden"
+  >
+    <div
+      className="failText"
+    >
+      A problem occured!
+    </div>
+  </div>
+</div>
+`;

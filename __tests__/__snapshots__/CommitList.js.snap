@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<div>
+  <div
+    className="repoTitle"
+  >
+    <span>
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        hank
+      </a>
+    </span>
+    /
+    git-who
+  </div>
+  <div
+    className={false}
+  >
+    <div
+      className="noItems "
+    >
+      <div>
+        No commits to this repo in the last month!
+      </div>
+      <div>
+        <a
+          href="/"
+        >
+          Back to 
+          hank
+        </a>
+      </div>
+    </div>
+    <div
+      className="getMore "
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-arrow-circle-o-down getMoreIcon"
+      />
+      <div
+        className="getMoreText"
+      >
+        Get More?
+      </div>
+    </div>
+  </div>
+  <div
+    className="hidden"
+  >
+    <div
+      className="failText"
+    >
+      A problem occured!
+    </div>
+  </div>
+</div>
+`;

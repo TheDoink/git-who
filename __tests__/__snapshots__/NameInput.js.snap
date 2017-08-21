@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<form
+  id="nameInputForm"
+  onSubmit={[Function]}
+>
+  <div
+    id="nameInputElement"
+  >
+    <input
+      id="nameInput"
+      onChange={[Function]}
+      placeholder="Enter A Git Username"
+      type="text"
+      value=""
+    />
+    <span
+      id="submitButton"
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-arrow-circle-o-right"
+      />
+    </span>
+  </div>
+</form>
+`;

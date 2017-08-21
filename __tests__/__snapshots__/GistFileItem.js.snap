@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<div
+  className="fileItem"
+>
+  <div
+    className="fileNameHeader"
+  >
+    Anagram.java
+  </div>
+  <div
+    className="fileContent"
+  >
+    <div
+      className="contentRow"
+    >
+      <span
+        className="rowNum"
+      >
+          0
+      </span>
+      <span
+        className="rowContent"
+      >
+        package com.array;
+      </span>
+    </div>
+    <div
+      className="contentRow"
+    >
+      <span
+        className="rowNum"
+      >
+          1
+      </span>
+      <span
+        className="rowContent"
+      >
+        
+      </span>
+    </div>
+    <div
+      className="contentRow"
+    >
+      <span
+        className="rowNum"
+      >
+          2
+      </span>
+      <span
+        className="rowContent"
+      >
+        another line
+      </span>
+    </div>
+  </div>
+</div>
+`;

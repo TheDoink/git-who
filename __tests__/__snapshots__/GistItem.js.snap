@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<div
+  className="hidden"
+>
+  <div
+    className=""
+  >
+    <div
+      id="gistTitle"
+    >
+      <div>
+        Gist: 
+      </div>
+      <div>
+        By: 
+        <span>
+          <a
+            href="#"
+            onClick={[Function]}
+          >
+            
+          </a>
+        </span>
+      </div>
+    </div>
+    <div />
+  </div>
+  <div
+    className="hidden"
+  >
+    <div
+      className="failText"
+    >
+      A problem occured getting this gist!
+    </div>
+  </div>
+</div>
+`;

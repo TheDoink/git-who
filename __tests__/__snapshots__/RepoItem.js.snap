@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<div
+  className="repoItem"
+>
+  <span
+    className="repoSuperScript"
+  >
+    <i
+      className="repoName"
+    >
+      <a
+        className=""
+        href="ddclient/commits"
+      >
+        ddclient
+      </a>
+      <a
+        className="hidden"
+        href="gist/47034580"
+      >
+        47034580
+      </a>
+    </i>
+    <span
+      className="repoLanguage"
+    >
+      Perl
+    </span>
+  </span>
+  <div
+    className="repoDescription"
+  >
+    Fork of the original ddclient code
+  </div>
+  <span
+    className="repoSubScript "
+  >
+    <span
+      className="repoWatchers"
+      title="watchers"
+    >
+      0
+      <i
+        className="fa fa-eye"
+      />
+    </span>
+     
+    <span
+      className="repoForks"
+      title="forks"
+    >
+      0
+      <i
+        className="fa fa-code-fork"
+      />
+    </span>
+  </span>
+</div>
+`;

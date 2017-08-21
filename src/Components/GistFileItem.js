@@ -11,6 +11,14 @@ class GistFileItem extends Component {
     return ret;
   };
 
+  getContent() {
+    let ret = [];
+    if(this.props.file && this.props.file.content) {
+      ret = this.props.file.content;
+    }
+    return ret;
+  }
+
   render() {
     
     return (
@@ -19,7 +27,7 @@ class GistFileItem extends Component {
             {this.props.file.filename}
           </div>
           <div className="fileContent">
-            {this.props.file.content.map((item, index) => (
+            {this.getContent.bind(this)().map((item, index) => (
               <div key={index} className="contentRow">
                 <span className="rowNum">{this.padNum(index)}</span>
                 <span className="rowContent">{item}</span>

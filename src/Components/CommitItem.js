@@ -14,6 +14,15 @@ class RepoItem extends Component {
     
     return ret;
   }
+
+  getMessage() {
+    let ret = "";
+    if(this.props.commit && this.props.commit.commit) {
+      ret = this.props.commit.commit.message
+    }
+    
+    return ret;
+  }
   
   render() {
     
@@ -24,7 +33,7 @@ class RepoItem extends Component {
               <NameLink userName={this.getAuthor.bind(this)()}></NameLink>
             </div>
           </div>
-          <div className="repoDescription">{this.props.commit.commit.message}</div>
+          <div className="repoDescription">{this.getMessage.bind(this)()}</div>
           <span className="repoSubScript">
             <span className="commitSha">{this.props.commit.sha}</span>
           </span>

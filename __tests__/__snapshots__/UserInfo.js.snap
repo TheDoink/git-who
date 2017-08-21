@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lines up with the snapshot 1`] = `
+<div>
+  <div
+    id="iconRow"
+  >
+    <div
+      id="userIcon"
+      style={
+        Object {
+          "backgroundImage": "url('https://avatars1.githubusercontent.com/u/8534?v=4')",
+          "backgroundPosition": "center",
+          "backgroundRepeat": "no-repeat",
+          "backgroundSize": "contain",
+          "display": "inline-block",
+          "height": "32vw",
+          "position": "relative",
+          "width": "32vw",
+        }
+      }
+    />
+    <div
+      className="hidden"
+      id="personIcon"
+    >
+      <i
+        className="fa fa-user"
+      />
+    </div>
+  </div>
+  <div
+    className=""
+    id="userInfo"
+  >
+    <div
+      id="userName"
+    >
+      hank
+    </div>
+    <div
+      className="hidden"
+      id="realName"
+    >
+      (
+      )
+    </div>
+    <div
+      className="hidden"
+      id="location"
+    >
+      From - 
+    </div>
+  </div>
+</div>
+`;
