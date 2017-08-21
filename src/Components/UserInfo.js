@@ -7,8 +7,8 @@ class UserInfo extends Component {
 
     // Define a box where the image will go 
     let ret = {
-      'width':'32vw',
-      'height':'32vw',
+      'width':'22vw',
+      'height':'22vw',
       'backgroundPosition':'center',
       'backgroundSize':'contain',
       'backgroundRepeat': 'no-repeat',

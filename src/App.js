@@ -19,6 +19,16 @@ class App extends Component {
       repoOrGist: "repo", // what kind
       searchMessage: "Search For A Git User Above" // general placeholder message for error handling
     }
+
+    /* I am fully aware this should be kept on the server side,
+    and not the client, but the api.github rate limits (60 calls until capped)
+    causes the app to not function properly after a very short amount of time. */
+    $.ajaxSetup({
+      data: {
+          client_id: "b05f58f738fc28b64be5",
+          client_secret: "bb9defac115d18622213ec9312e8bca39d528de4"
+      }
+    });
   }
 
   componentWillMount() {

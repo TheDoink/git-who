@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Git Who",
+  "name": "The Git Who App",
   "icons": [
     {
       "src": "favicon.ico",
