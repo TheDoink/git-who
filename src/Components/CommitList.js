@@ -56,7 +56,7 @@ class CommitList extends Component {
     }
   }
 
-  // Quick function to error check and see who owns the gist
+  // Quick function to error check and see who owns the item
   getUser() {
     let ret = "";
     if(this.props.gitUser.login) {

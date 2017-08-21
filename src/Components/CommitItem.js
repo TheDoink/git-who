@@ -10,6 +10,16 @@ class RepoItem extends Component {
   constructor(props) {
     super(props);
   };
+
+  // Quick function to error check and see who owns the item
+  getAuthor() {
+    let ret = "";
+    if(this.props.commit && this.props.commit.author) {
+      ret = this.props.commit.author.login;
+    }
+    
+    return ret;
+  }
   
   render() {
     
@@ -17,7 +27,7 @@ class RepoItem extends Component {
         <div className="repoItem">
           <div className="repoSuperScript">
             <div className="commitAuthor">
-              <NameLink userName={this.props.commit.author.login}></NameLink>
+              <NameLink userName={this.getAuthor.bind(this)()}></NameLink>
             </div>
           </div>
           <div className="repoDescription">{this.props.commit.commit.message}</div>
